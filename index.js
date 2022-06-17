@@ -59,7 +59,14 @@ function viewEmployees() {
 }
 
 function addDepartment() {
-    db.query('INSERT INTO department WHERE id=?', (err, result) => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'newDepartment',
+            message: 'Please enter a department name.'
+        }
+    ]);
+    db.query('INSERT INTO department', (err, result) => {
         if (err) throw err
         console.table(result);
         menu();
@@ -67,7 +74,24 @@ function addDepartment() {
 }
 
 function addRole() {
-    db.query('INSERT INTO role WHERE id=?', (err, result) => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'newRole',
+            message: 'What is this new role?'
+        },
+        {
+            type: 'input',
+            name: 'newSalary',
+            message: "What is this new role's salary?"
+        },
+        {
+            type: 'input',
+            name: 'whichDepartment',
+            message:  'What department is this new role in?'
+        }
+    ]);
+    db.query('INSERT INTO role', (err, result) => {
         if (err) throw err
         console.table(result);
         menu();
@@ -75,7 +99,29 @@ function addRole() {
 }
 
 function addEmployee() {
-    db.query('INSERT INTO employee WHERE id=?', (err, result) => {
+    db.query('INSERT INTO employee', (err, result) => {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'newEmployeeFirst',
+                message: "Please enter the new employee's first name."
+            },
+            {
+                type: 'input',
+                name: 'newEmployeeLast',
+                message: "Please enter the new employee's last name."
+            },
+            {
+                type: 'input',
+                name: 'newEmployeeRole',
+                message: "Please enter the new employee's role."
+            },
+            {
+                type: 'input',
+                name: 'newEmployeeManager',
+                message: "Please enter the new employee's manager."
+            }
+        ]);
         if (err) throw err
         console.table(result);
         menu();
