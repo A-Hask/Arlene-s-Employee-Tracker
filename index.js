@@ -28,7 +28,10 @@ function menu() {
                 addEmployee();
             } else if (option === 'Update an employee role') {
                 updateRole();
-            } else {
+            } else if (option === "View a department's budget") {
+                viewBudget();
+            }
+            else {
                 quitMenu();
             }
         })
@@ -95,12 +98,12 @@ function addRole() {
         {
             type: 'list',
             name: 'whichDepartment',
-            message: 'What department is this new role in?',
-            choices: []
+            message: 'What is the department id? 1=Sales, 2=Engineering, 3=Finance, 4=Legal',
+            choices: ['1', '2', '3', '4']
         }
     ])
         .then((answers) =>
-            db.promise().query('INSERT INTO role (title, salary, department_id) VALUE (?, ?, ?,)', [answers.newRole, answers.newSalary, answers.whichDepartment], (err, result) => {
+            db.promise().query('INSERT INTO role (title, salary, department_id) VALUE (?, ?, ?)', [answers.newRole, answers.newSalary, answers.whichDepartment], (err, result) => {
                 if (err) throw err
                 console.table(result);
             })).then(() => {
@@ -124,14 +127,8 @@ function addEmployee() {
         {
             type: 'list',
             name: 'newEmployeeRole',
-            message: "Please choose the new employee's role.",
-            choices: []
-        },
-        {
-            type: 'list',
-            name: 'newEmployeeManager',
-            message: "Please choose the new employee's manager.",
-            choices: []
+            message: "Please choose the new employee's role id.",
+            choices: ['1', '2', '3', '4', '5', '6', '7', '8']
         }
     ])
         .then((answers) =>
@@ -148,14 +145,14 @@ function updateRole() {
         {
             type: 'list',
             name: 'chooseEmployee',
-            message: 'Which employee would you like to update?',
-            choices: []
+            message: 'Choose the id of the employee you would like to update.',
+            choices: ['1', '2', '3', '4', '5', '6', '7', '8']
         },
         {
             type: 'list',
             name: 'newRole',
-            message: 'What will their new role be?',
-            choices: []
+            message: 'Choose the id of their new role',
+            choices: ['1', '2', '3', '4', '5', '6', '7', '8']
         }
     ])
         .then((answers) =>
@@ -166,14 +163,6 @@ function updateRole() {
                 menu();
             })
 }
-
-//department array
-
-//role array
-
-//employee array
-
-//manager array
 
 
 //allows the user to exit the app
