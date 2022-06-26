@@ -35,7 +35,8 @@
 
   ## Usage Information
 
-  This project can be used to create, read, update, and delete employee profiles
+  This project can be used to create, read, update, and delete employee profiles.
+  https://drive.google.com/file/d/1WMXgUNLfH0UXGG2kvQERQFaJufWcJGcM/view?usp=sharing
 
   ________________________________________
 
